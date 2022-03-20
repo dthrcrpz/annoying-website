@@ -25,6 +25,7 @@
   </div>
 
   <Game v-if="startedGame"/>
+  <IdleCheck v-if="idleCheck"/>
 </template>
 
 <script>
@@ -32,6 +33,7 @@ import Navbar from './components/Navbar.vue'
 import Cookies from './components/Cookies.vue'
 import ModalBackground from './components/ModalBackground.vue'
 import Game from './components/Game/Game.vue'
+import IdleCheck from './components/Game/IdleCheck.vue'
 import { mapMutations, mapState } from 'vuex'
 
 export default {
@@ -39,15 +41,18 @@ export default {
     Navbar,
     Cookies,
     ModalBackground,
-    Game
+    Game,
+    IdleCheck
   },
   data: () => ({
     cookies: false,
     timerCount: 0,
     timer: null,
+    idleCheckTimer: null,
     finished: false,
-    startedGame: true,
+    startedGame: false,
     date: new Date(null),
+    idleCheck: false
   }),
   computed: {
     ...mapState({
@@ -61,16 +66,30 @@ export default {
   provide () {
     return {
       toggleCookies: this.toggleCookies,
-      toggleModal: this.toggleModal
+      toggleModal: this.toggleModal,
+      toggleIdleCheck: this.toggleIdleCheck
     }
   },
   methods: {
     ...mapMutations({
       'toggleModal': 'globals/toggleModal'
     }),
+    toggleIdleCheck (state = true) {
+      this.idleCheck = state
+      this.toggleModal(state)
+
+      if (state == false) {
+        clearTimeout(this.idleCheckTimer)
+        this.startIdleChecking()
+      }
+    },
     toggleCookies (state = true) {
       this.cookies = state
       this.toggleModal(state)
+
+      if (state == false) {
+        this.startIdleChecking()
+      }
     },
     startGame () {
       if (this.startedGame) {
@@ -80,6 +99,9 @@ export default {
       this.startedGame = true
       this.toggleCookies(true)
 
+      this.startTimer()
+    },
+    startTimer () {
       this.timer = setInterval(() => {
         if (!this.finished) {
           this.timerCount += 1
@@ -87,6 +109,11 @@ export default {
           clearTimeout(this.timer)
         }
       }, 1000)
+    },
+    startIdleChecking () {
+      this.idleCheckTimer = setInterval(() => {
+        this.toggleIdleCheck(true)
+      }, 30000)
     }
   }
 }

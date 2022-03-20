@@ -3,7 +3,7 @@
     <div class="wrapper ml-2">
       <h1 class="text-4xl">Create Account:</h1>
       <hr>
-      <form @submit.prevent="submit()">
+      <div @submit.prevent="submit()">
         <div class="form-group">
           <input type="text" placeholder="Your Middle Name">
         </div>
@@ -64,19 +64,21 @@
         <hr>
 
         <div class="mb-5" v-if="showTerms">
-          <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer" @click="toggleTermsModal()"></div>
+          <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer relative">
+            <span class="absolute top-[-10px] font-bold left-0 text-2xl text-green-500" v-if="acceptedTerms">✓</span>
+          </div>
           <p>I have <a href="javascript:void(0)" class="text-yellow-400 underline">read and</a> accepted the te<u @click="toggleTermsModal()">rms and condi</u>tions </p>
         </div>
 
         <div class="flex justify-between">
-          <button class="btn primary">Cancel</button>
-          <button class="btn danger">Submit</button>
+          <button class="btn primary" type="button">Cancel</button>
+          <button class="btn danger" type="submit" @click="submit()">Submit</button>
         </div>
-      </form>
+      </div>
     </div>
     
     <AcceptPromptModal v-if="showAcceptWarning" @close="toggleAcceptWarning(false)"/>
-    <TermsModal/>
+    <TermsModal @doAction="catchTermsAction" v-if="showTermsModal"/>
   </div>
 </template>
 
@@ -94,9 +96,14 @@ export default {
     showTerms: false,
     acceptedTerms: false,
     showAcceptWarning: false,
-    showTermsModal: true
+    showTermsModal: false
   }),
   methods: {
+    catchTermsAction (action) {
+      this.acceptedTerms = (action == 'accept') ? true : false
+
+      this.toggleTermsModal(false)
+    },
     toggleTermsModal (value = true) {
       this.showTermsModal = value
       this.toggleModal(value)
