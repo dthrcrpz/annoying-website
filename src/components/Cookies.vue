@@ -11,7 +11,7 @@
     </marquee>
     <div class="mt-3">
       <p class="text-red-300" v-if="selected == 'no'">You cannot select "No". Try other options</p>
-      <p class="text-blue-300 text-xl" v-if="selected == 'yes'">Thanks. Click "yes" again.</p>
+      <p class="text-blue-300 text-xl" v-if="selected == 'yes'">Thanks. Click "yes" again. You can do it. </p>
     </div>
   </div>
 </template>
