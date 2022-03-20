@@ -118,13 +118,12 @@ export default {
       }
     },
     submit () {
-      this.$emit('submitData')
-      return
-
       if (!this.acceptedTerms) {
         this.toggleAcceptWarning(true)
         return
       }
+
+      this.$emit('submitData')
     },
   }
 }

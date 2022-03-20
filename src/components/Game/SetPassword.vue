@@ -18,8 +18,8 @@
     <p class="text-red-500 font-bold text-3xl">{{ errorMessage }}</p>
 
     <p class="text-lg text-center" v-if="showPayTheGovt">
-      Having problems with OTP? Click <button class="btn primary">HERE</button> to pay someone from the government and have your account processed. <br>
-      NOTE: It might take 3 to 12 months for your account to be processed unless you're a politician
+      Having problems with OTP? Click <button class="btn primary" @click="$emit('pay')">HERE</button> to pay someone from the government and have your account processed. <br>
+      NOTE: It might take 3 to 12 months for your account to be processed unless you're a politician or has strong connections with us.
     </p>
   </div>
 </template>

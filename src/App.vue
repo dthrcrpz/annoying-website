@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <Game v-if="startedGame"/>
+  <Game v-if="startedGame" @finish="finishGame()"/>
   <IdleCheck v-if="idleCheck"/>
 </template>
 
@@ -45,7 +45,7 @@ export default {
     IdleCheck
   },
   data: () => ({
-    startedGame: true,
+    startedGame: false,
     cookies: false,
     timerCount: 0,
     timer: null,
@@ -74,6 +74,9 @@ export default {
     ...mapMutations({
       'toggleModal': 'globals/toggleModal'
     }),
+    finishGame () {
+      this.finished = true
+    },
     toggleIdleCheck (state = true) {
       this.idleCheck = state
       this.toggleModal(state)
@@ -88,7 +91,7 @@ export default {
       this.toggleModal(state)
 
       if (state == false) {
-        // this.startIdleChecking()
+        this.startIdleChecking()
       }
     },
     startGame () {
