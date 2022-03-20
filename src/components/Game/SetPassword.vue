@@ -41,14 +41,8 @@ export default {
   }),
   methods: {
     submitOtp () {
-      if (this.receivedOtp == null) {
+      if (this.receivedOtp == null || this.receivedOtp != this.otp) {
         this.errorMessage = `Invalid OTP`
-        return
-      }
-
-      if (this.receivedOtp != this.otp) {
-        this.errorMessage = `Wrong OTP!`
-        this.showPayTheGovt = true
         return
       }
 
