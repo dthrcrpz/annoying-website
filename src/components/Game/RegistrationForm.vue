@@ -74,7 +74,7 @@
         <hr>
 
         <div class="mb-5" v-if="showTerms">
-          <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer relative">
+          <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer relative" @click="toggleTermsModal()">
             <span class="absolute top-[-10px] font-bold left-0 text-2xl text-green-500" v-if="acceptedTerms">✓</span>
           </div>
           <p>I have <a href="javascript:void(0)" class="text-yellow-400 underline">read and</a> accepted the te<u @click="toggleTermsModal()">rms and condi</u>tions </p>
