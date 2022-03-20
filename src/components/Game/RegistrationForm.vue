@@ -149,9 +149,9 @@ export default {
       }
   
       User.add(this.form).then(res => {
-        console.log(res);
+        //
       }).catch(err => {
-        console.log(err);
+        //
       }).then(() => {
         this.$emit('submitData')
       })
