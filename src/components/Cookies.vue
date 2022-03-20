@@ -4,7 +4,7 @@
     <p class="text-2xl text-right">BUT THERE'S THIS BOX ANYWAY!!!</p>
     <p class="text-xl text-left">Is This 0kaY</p>
     <p class="text-3xl text-left">for you?</p>
-    <marquee class="mt-5" scrollamount="5" behavior="alternate">
+    <marquee class="mt-5" scrollamount="10" behavior="alternate">
       <button class="btn primary mr-3 translate-y-2" @click="choose('no')">No</button>
       <button class="btn danger mr-3 translate-y-[-10px] text-sm" @click="choose('yes')">yes</button>
       <button class="btn warning mr-3 translate-y-1" @click="choose()">Do nothing</button>
