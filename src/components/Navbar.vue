@@ -1,5 +1,5 @@
 <template>
-  <nav class="shadow-md">
+  <nav class="shadow-md py-5">
     <div class="wrapper">
       <div class="flex justify-center items-center">
         <div>
