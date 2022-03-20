@@ -1,5 +1,5 @@
 <template>
-  <div id="registration-form">
+  <div id="registration-form" class="pb-10">
     <div class="wrapper ml-2">
       <h1 class="text-4xl">Create Account:</h1>
       <hr>
@@ -54,19 +54,19 @@
         <hr>
 
         <div class="form-group">
-          <Field type="text" placeholder="Your Full Address" rules="required" v-model="form.full_address" name="full_address"/>
+          <Field type="text" placeholder="Your Full Address" rules="required" v-model="form.full_address" name="full_address" class="w-[150px]"/>
           <span class="validation-errors" v-if="errors.full_address">{{ errors.full_address }}</span>
         </div>
         <div class="form-group">
-          <Field type="text" placeholder="Your City Name" class="w-full" rules="required" v-model="form.city_name" name="city_name"/>
+          <Field as="textarea" rows="10" placeholder="Your City Name" class="w-full" rules="required" v-model="form.city_name" name="city_name"/>
           <span class="validation-errors" v-if="errors.city_name">{{ errors.city_name }}</span>
         </div>
         <div class="form-group">
-          <Field type="text" placeholder="Your Street Name" class="w-full" rules="required" v-model="form.street_name" name="street_name"/>
+          <Field as="textarea" rows="10" placeholder="Your Street Name" class="w-full" rules="required" v-model="form.street_name" name="street_name"/>
           <span class="validation-errors" v-if="errors.street_name">{{ errors.street_name }}</span>
         </div>
         <div class="form-group">
-          <Field type="text" placeholder="Your State/Province" class="w-full" rules="required" v-model="form.state" name="state"/>
+          <Field as="textarea" rows="10" placeholder="Your State/Province" class="w-full" rules="required" v-model="form.state" name="state"/>
           <span class="validation-errors" v-if="errors.state">{{ errors.state }}</span>
         </div>
 
@@ -110,9 +110,9 @@ export default {
     showAcceptWarning: false,
     showTermsModal: false,
     form: {
-      middleName: '',
-      lastName: '',
-      firstName: '',
+      middleName: 'Type your middle name',
+      lastName: 'Type your last name',
+      firstName: 'Type your first name',
       email_prefix: '',
       email_domain: '',
       email_extension: '',

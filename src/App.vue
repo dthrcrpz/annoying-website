@@ -16,7 +16,7 @@
       <p class="text-xl mt-3">- YOU GUYS DESERVE A GOOD UI/UX..... <span class="text-red-600 font-bold">OR NOT(?)</span></p>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-5 mb-10">
       <h2 class="text-5xl text-center">Let's get you started!</h2>
       <div class="flex justify-center mt-5">
         <button class="px-5 bg-blue-500 text-white py-5 text-4xl shadow-md hover:shadow-lg hover:bg-blue-800 transition-all" @click="startGame()">PLAY GAME</button>
