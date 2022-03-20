@@ -38,7 +38,7 @@ export default {
 <style lang="sass" scoped>
 .to-read
   &::-webkit-scrollbar
-    width: 0.5px
+    width: 2px
   &::-webkit-scrollbar-track
     background: #f1f1f1
   &::-webkit-scrollbar-thumb
