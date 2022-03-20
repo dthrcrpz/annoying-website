@@ -19,8 +19,12 @@
     <div class="mt-5 mb-10">
       <h2 class="text-5xl text-center">Let's get you started!</h2>
       <div class="flex justify-center mt-5">
-        <button class="px-5 bg-blue-500 text-white py-5 text-4xl shadow-md hover:shadow-lg hover:bg-blue-800 transition-all" @click="startGame()">PLAY GAME</button>
+        <button :class="`px-5 bg-blue-500 text-white py-5 text-4xl shadow-md hover:shadow-lg hover:bg-blue-800 transition-all ${!gameReady ? 'opacity-50 cursor-not-allowed' : ''}`" @click="startGame()">PLAY GAME</button>
       </div>
+      <p class="text-center">
+        Game will be playable after <b>{{ gameReadyTimer }}</b> seconds. <br>
+        Keep reading for now. 
+      </p>
     </div>
   </div>
 
@@ -48,6 +52,8 @@ export default {
     Help
   },
   data: () => ({
+    gameReady: false,
+    gameReadyTimer: 10,
     startedGame: false,
     cookies: false,
     timerCount: 0,
@@ -98,7 +104,7 @@ export default {
       }
     },
     startGame () {
-      if (this.startedGame) {
+      if (this.startedGame || !this.gameReady) {
         return 
       }
 
@@ -120,7 +126,17 @@ export default {
       this.idleCheckTimer = setInterval(() => {
         this.toggleIdleCheck(true)
       }, 50000)
-    }
+    },
+  },
+  mounted () {
+    let timer = setInterval(() => {
+      if (this.gameReadyTimer > 0) {
+        this.gameReadyTimer -= 1
+      } else {
+        this.gameReady = true
+        clearInterval(timer)
+      }
+    }, 1000)
   }
 }
 </script>
