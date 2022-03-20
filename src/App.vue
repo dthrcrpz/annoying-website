@@ -116,7 +116,7 @@ export default {
     startIdleChecking () {
       this.idleCheckTimer = setInterval(() => {
         this.toggleIdleCheck(true)
-      }, 5000)
+      }, 50000)
     }
   }
 }
