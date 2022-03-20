@@ -54,7 +54,7 @@ export default {
   data: () => ({
     gameReady: false,
     gameReadyTimer: 10,
-    startedGame: true,
+    startedGame: false,
     cookies: false,
     timerCount: 0,
     timer: null,
