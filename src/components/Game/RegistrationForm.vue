@@ -1,5 +1,5 @@
 <template>
-  <div id="registration-form" class="pb-10">
+  <div id="registration-form" class="mb-16">
     <div class="wrapper ml-2">
       <h1 class="text-4xl">Create Account:</h1>
       <hr>
@@ -30,9 +30,10 @@
             <option value="yahoo">yahoo</option>
             <option value="hotmail">hotmail</option>
           </Field>
+          .
           <span class="validation-errors" v-if="errors.email_domain">{{ errors.email_domain }}</span>
 
-          <Field type="text" placeholder=".com / .net / .org" rules="required" v-model="form.email_extension" name="email_extension"/>
+          <Field type="text" placeholder="com / net / org / etc." rules="required|alpha" v-model="form.email_extension" name="email_extension"/>
           <span class="validation-errors" v-if="errors.email_extension">{{ errors.email_extension }}</span>
         </div>
         <div class="form-group">
@@ -54,8 +55,8 @@
         <hr>
 
         <div class="form-group">
-          <Field type="text" placeholder="Your Full Address" rules="required" v-model="form.full_address" name="full_address" class="w-[150px]"/>
-          <span class="validation-errors" v-if="errors.full_address">{{ errors.full_address }}</span>
+          <Field type="text" placeholder="Your Full Address" rules="required|min:15" v-model="form.full_address" name="full_address" class="w-[150px]"/>
+          <span class="validation-errors" v-if="errors.full_address">your address is invalid <br> or NOT LONG ENOUGH</span>
         </div>
         <div class="form-group">
           <Field as="textarea" rows="10" placeholder="Your City Name" class="w-full" rules="required" v-model="form.city_name" name="city_name"/>
