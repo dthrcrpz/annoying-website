@@ -1,2 +1,14 @@
 .wrapper
   @apply container mx-auto px-5 py-5
+
+.modal
+  @apply fixed shadow-md text-white px-5 py-5 mx-auto my-auto top-[15%] left-0 right-0 max-w-lg w-full
+
+.btn
+  @apply px-3 py-1 transition-all text-lg
+  &.primary
+    @apply bg-blue-500 hover:bg-blue-700
+  &.danger
+    @apply bg-red-500 hover:bg-red-700
+  &.warning
+    @apply bg-yellow-500 hover:bg-yellow-700
