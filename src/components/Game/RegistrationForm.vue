@@ -96,7 +96,8 @@ export default {
     showTerms: false,
     acceptedTerms: false,
     showAcceptWarning: false,
-    showTermsModal: false
+    showTermsModal: false,
+    form: {}
   }),
   methods: {
     catchTermsAction (action) {
@@ -117,11 +118,14 @@ export default {
       }
     },
     submit () {
+      this.$emit('submitData')
+      return
+
       if (!this.acceptedTerms) {
         this.toggleAcceptWarning(true)
         return
       }
-    }
+    },
   }
 }
 </script>

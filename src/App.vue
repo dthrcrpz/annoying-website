@@ -4,7 +4,7 @@
   <Cookies v-if="cookies"/>
 
   <div class="fixed top-1 left-1 text-red-600" v-if="startedGame">
-    Time elapsed: <span class="font-bold text-lg">{{ timerFormatted }}</span>
+    Seconds elapsed: <span class="font-bold text-lg">{{ timerCount }}</span>
   </div>
 
   <div class="wrapper mt-5" v-if="!startedGame">
@@ -45,12 +45,12 @@ export default {
     IdleCheck
   },
   data: () => ({
+    startedGame: true,
     cookies: false,
     timerCount: 0,
     timer: null,
     idleCheckTimer: null,
     finished: false,
-    startedGame: false,
     date: new Date(null),
     idleCheck: false
   }),
@@ -79,7 +79,7 @@ export default {
       this.toggleModal(state)
 
       if (state == false) {
-        clearTimeout(this.idleCheckTimer)
+        clearInterval(this.idleCheckTimer)
         this.startIdleChecking()
       }
     },
@@ -88,7 +88,7 @@ export default {
       this.toggleModal(state)
 
       if (state == false) {
-        this.startIdleChecking()
+        // this.startIdleChecking()
       }
     },
     startGame () {
@@ -106,19 +106,15 @@ export default {
         if (!this.finished) {
           this.timerCount += 1
         } else {
-          clearTimeout(this.timer)
+          clearInterval(this.timer)
         }
       }, 1000)
     },
     startIdleChecking () {
       this.idleCheckTimer = setInterval(() => {
         this.toggleIdleCheck(true)
-      }, 30000)
+      }, 5000)
     }
   }
 }
 </script>
-
-<style>
-
-</style>

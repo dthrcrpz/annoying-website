@@ -20,7 +20,7 @@
 <script>
 export default {
   data: () => ({
-    hasScrolledToBottom: true
+    hasScrolledToBottom: false
   }),
   methods: {
     doAction (action) {
