@@ -39,11 +39,8 @@
     </div>
 
     <p>Need assistance? Contact us at <a href="tel:123-456-789">123-456-789</a> and make sure to prepare your payment.</p>
-
     <hr>
-
     <p class="text-4xl">This ends the game for now. I hope you enjoyed!</p>
-
     <hr>
 
     <p class="text-teal-700 text-4xl mt-5">Site not painful enough?</p>
@@ -60,7 +57,7 @@
 export default {
   data: () => ({
     amount: '$50',
-    paid: true
+    paid: false
   }),
   methods: {
     pay () {
