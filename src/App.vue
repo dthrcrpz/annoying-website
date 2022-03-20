@@ -10,7 +10,7 @@
   <div class="wrapper mt-5" v-if="!startedGame">
     <div>
       <h1 class="text-4xl text-teal-600">- Why?</h1>
-      <p class="text-xl mt-3">- By going through a <span class="text-red-600 font-bold">painful</span> website experience, you guys will appreciate <br> websites/applications with good design and UX (user-experience)</p>
+      <p class="text-xl mt-3">- By going through a <span class="text-red-600 font-bold">painful</span> website experience, you guys will appreciate <br> websites/applications with good design and UX (User Experience)</p>
       <p class="text-xl mt-3">- Learn why you SHOULD NOT take good <span class="text-teal-600">developers/programmers</span> and <span class="text-teal-600">designers</span> for granted</p>
       <p class="text-xl mt-3">- To make you realize how <b class="text-red-600">SHITTY</b> most our government's <b>OnLinE sErviceS</b> are because they corrupt the budget! <br> That includes my very corrupt uncle.</p>
       <p class="text-xl mt-3">- YOU GUYS DESERVE A GOOD UI/UX..... <span class="text-red-600 font-bold">OR NOT(?)</span></p>
