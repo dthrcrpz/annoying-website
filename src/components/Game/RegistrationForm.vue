@@ -96,6 +96,7 @@
 import AcceptPromptModal from './AcceptPromptModal.vue'
 import TermsModal from './TermsModal.vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
+import User from '../../services/User'
 
 export default {
   components: {
@@ -146,8 +147,14 @@ export default {
         this.toggleAcceptWarning(true)
         return
       }
-
-      this.$emit('submitData')
+  
+      User.add(this.form).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      }).then(() => {
+        this.$emit('submitData')
+      })
     },
   }
 }
