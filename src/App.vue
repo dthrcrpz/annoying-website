@@ -26,6 +26,7 @@
 
   <Game v-if="startedGame" @finish="finishGame()"/>
   <IdleCheck v-if="idleCheck"/>
+  <Help v-if="startedGame"/>
 </template>
 
 <script>
@@ -34,6 +35,7 @@ import Cookies from './components/Cookies.vue'
 import ModalBackground from './components/ModalBackground.vue'
 import Game from './components/Game/Game.vue'
 import IdleCheck from './components/Game/IdleCheck.vue'
+import Help from './components/Game/Help.vue'
 import { mapMutations, mapState } from 'vuex'
 
 export default {
@@ -42,7 +44,8 @@ export default {
     Cookies,
     ModalBackground,
     Game,
-    IdleCheck
+    IdleCheck,
+    Help
   },
   data: () => ({
     startedGame: false,
