@@ -21,7 +21,7 @@
       <div class="flex justify-center mt-5">
         <button :class="`px-5 bg-blue-500 text-white py-5 text-4xl shadow-md hover:shadow-lg hover:bg-blue-800 transition-all ${!gameReady ? 'opacity-50 cursor-not-allowed' : ''}`" @click="startGame()">PLAY GAME</button>
       </div>
-      <p class="text-center">
+      <p class="text-center" v-if="!gameReady">
         Game will be playable after <b>{{ gameReadyTimer }}</b> seconds. <br>
         Keep reading for now. 
       </p>
