@@ -3,7 +3,7 @@
   <ModalBackground v-if="modal"/>
   <Cookies v-if="cookies"/>
 
-  <div class="fixed top-1 left-1 text-red-600" v-if="startedGame">
+  <div class="fixed top-1 left-1 text-red-600 z-50" v-if="startedGame">
     Seconds elapsed: <span class="font-bold text-lg">{{ timerCount }}</span>
   </div>
 

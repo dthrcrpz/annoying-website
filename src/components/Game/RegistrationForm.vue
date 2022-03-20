@@ -3,29 +3,37 @@
     <div class="wrapper ml-2">
       <h1 class="text-4xl">Create Account:</h1>
       <hr>
-      <div @submit.prevent="submit()">
+      <Form @submit="onSubmit" v-slot="{ errors }">
         <div class="form-group">
-          <input type="text" placeholder="Your Middle Name">
+          <Field type="text" placeholder="Your Middle Name" rules="required" v-model="form.middleName" name="middle_name"/>
+          <span class="validation-errors" v-if="errors.middle_name">{{ errors.middle_name }}</span>
         </div>
         <div class="form-group pl-2">
-          <input type="text" placeholder="Your Last Name">
+          <Field type="text" placeholder="Your Last Name" rules="required" v-model="form.lastName" name="last_name"/>
+          <span class="validation-errors" v-if="errors.last_name">{{ errors.last_name }}</span>
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Your First Name">
+          <Field type="text" placeholder="Your First Name" rules="required" v-model="form.firstName" name="first_name"/>
+          <span class="validation-errors" v-if="errors.first_name">{{ errors.first_name }}</span>
         </div>
 
         <hr>
 
         <div class="form-group">
           <label>Email Address</label>
-          <input type="text" placeholder="johndoe">@
-          <select>
+          <Field type="text" placeholder="johndoe" rules="required" v-model="form.email_prefix" name="email_prefix"/>@
+          <span class="validation-errors" v-if="errors.email_prefix">{{ errors.email_prefix }}</span>
+
+          <Field as="select" placeholder="johndoe" rules="required" v-model="form.email_domain" name="email_domain">
             <option value="" selected>select one</option>
             <option value="gmail">gmail</option>
             <option value="yahoo">yahoo</option>
             <option value="hotmail">hotmail</option>
-          </select>
-          <input type="text" placeholder=".com / .net / .org">
+          </Field>
+          <span class="validation-errors" v-if="errors.email_domain">{{ errors.email_domain }}</span>
+
+          <Field type="text" placeholder=".com / .net / .org" rules="required" v-model="form.email_extension" name="email_extension"/>
+          <span class="validation-errors" v-if="errors.email_extension">{{ errors.email_extension }}</span>
         </div>
         <div class="form-group">
           <label>Phone Number (numbers only):</label>
@@ -46,19 +54,20 @@
         <hr>
 
         <div class="form-group">
-          <input type="text" placeholder="Your Full Address">
+          <Field type="text" placeholder="Your Full Address" rules="required" v-model="form.full_address" name="full_address"/>
+          <span class="validation-errors" v-if="errors.full_address">{{ errors.full_address }}</span>
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Your City Name" class="w-full">
+          <Field type="text" placeholder="Your City Name" class="w-full" rules="required" v-model="form.city_name" name="city_name"/>
+          <span class="validation-errors" v-if="errors.city_name">{{ errors.city_name }}</span>
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Your Street Name" class="w-full">
+          <Field type="text" placeholder="Your Street Name" class="w-full" rules="required" v-model="form.street_name" name="street_name"/>
+          <span class="validation-errors" v-if="errors.street_name">{{ errors.street_name }}</span>
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Your State/Province" class="w-full">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Your City Name" class="w-full">
+          <Field type="text" placeholder="Your State/Province" class="w-full" rules="required" v-model="form.state" name="state"/>
+          <span class="validation-errors" v-if="errors.state">{{ errors.state }}</span>
         </div>
 
         <hr>
@@ -72,9 +81,9 @@
 
         <div class="flex justify-between">
           <button class="btn primary" type="button">Cancel</button>
-          <button class="btn danger" type="submit" @click="submit()">Submit</button>
+          <button class="btn danger" type="submit">Submit</button>
         </div>
-      </div>
+      </Form>
     </div>
     
     <AcceptPromptModal v-if="showAcceptWarning" @close="toggleAcceptWarning(false)"/>
@@ -85,11 +94,14 @@
 <script>
 import AcceptPromptModal from './AcceptPromptModal.vue'
 import TermsModal from './TermsModal.vue'
+import { Form, Field, ErrorMessage } from 'vee-validate'
 
 export default {
   components: {
     AcceptPromptModal,
-    TermsModal
+    TermsModal,
+    Form,
+    Field
   },
   inject: ['toggleModal'],
   data: () => ({
@@ -97,7 +109,18 @@ export default {
     acceptedTerms: false,
     showAcceptWarning: false,
     showTermsModal: false,
-    form: {}
+    form: {
+      middleName: '',
+      lastName: '',
+      firstName: '',
+      email_prefix: '',
+      email_domain: '',
+      email_extension: '',
+      full_address: '',
+      city_name: '',
+      street_name: '',
+      state: '',
+    }
   }),
   methods: {
     catchTermsAction (action) {
@@ -117,7 +140,7 @@ export default {
         this.showTerms = true
       }
     },
-    submit () {
+    onSubmit (values) {
       if (!this.acceptedTerms) {
         this.toggleAcceptWarning(true)
         return
