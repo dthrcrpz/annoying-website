@@ -37,22 +37,33 @@
           <span class="validation-errors" v-if="errors.email_extension">{{ errors.email_extension }}</span>
         </div>
         <div class="form-group">
-          <label>Phone Number (numbers only):</label>
+          <label>Phone Number:</label>
           <div class="flex">
             <div v-for="(repeat, key) in 11" :key="key">
-              <Field as="select" class="mr-1" :name="`phone_number_index_${key}`" rules="required">
+              <Field as="select" class="mr-1" :name="`phone_number_index_${key}`" rules="required|numeric">
                 <option value="" selected>-</option>
+                <option value="one">one</option>
+                <option value="two">two</option>
+                <option value="tri">tri</option>
+                <option value="for">for</option>
+                <option value="fyv">fyv</option>
+                <option value="six">six</option>
+                <option value="svn">svn</option>
+                <option value="ate">ate</option>
+                <option value="nyn">nyn</option>
+                <option value="ten">ten</option>
                 <option value="2">2</option>
                 <option value="8">8</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
+                <option value="1">1</option>
                 <option value="9">9</option>
                 <option value="3">3</option>
                 <option value="0">0</option>
                 <option value="7">7</option>
                 <option value="6">6</option>
               </Field>
-              <span class="validation-errors" v-if="errors[`phone_number_index_${key}`]">Invalid phone number</span>
+              <span class="validation-errors" v-if="errors[`phone_number_index_${key}`]">Invalid phone number. Must be numbers.</span>
             </div>
           </div>
         </div>

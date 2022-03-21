@@ -7,10 +7,11 @@ const app = createApp(App)
 
 /* define vee-validate global rules */
 import { defineRule, configure } from 'vee-validate'
-import { required, min, alpha } from '@vee-validate/rules'
+import { required, min, alpha, numeric } from '@vee-validate/rules'
 defineRule('required', required)
 defineRule('min', min)
 defineRule('alpha', alpha)
+defineRule('numeric', numeric)
 configure({
   validateOnBlur: true,
   validateOnChange: true,
