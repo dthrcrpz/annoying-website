@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
           <label>Phone Number: <span class="text-yellow-500">*</span></label>
-          <div class="flex">
+          <div class="flex flex-row flex-wrap">
             <div v-for="(repeat, key) in 11" :key="key">
               <Field as="select" class="mr-1" :name="`phone_number_${key}`" rules="required|numeric">
                 <option value="" selected>-</option>
@@ -71,7 +71,7 @@
 
         <div class="form-group">
           <label>Verify Phone Number: <span class="text-green-500">*</span></label>
-          <div class="flex">
+          <div class="flex flex-row flex-wrap">
             <div v-for="(repeat, key) in 11" :key="key">
               <Field as="select" class="mr-1" :name="`phone_number_verification_${key}`" :rules="`required|numeric|confirmed:@phone_number_${key}`">
                 <option value="" selected>-</option>
