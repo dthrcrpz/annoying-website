@@ -1,10 +1,10 @@
 <template>
   <div id="registration-form" class="mb-16">
     <div class="wrapper ml-2">
-      <h1 class="text-4xl">Create Account:</h1>
+      <h1 class="text-4xl">Register,, so you will be able to Create <span class="text-red-500">A</span> <span class="text-red-500">A</span>ccount:</h1>
       <hr>
       <Form @submit="onSubmit" v-slot="{ errors }" @invalid-submit="onInvalidSubmit">
-        <b>Your Name (no special characters)</b>
+        <b>Your Name (no special characters like !@#$%^&*()_+{}":>?|~ etc.")</b>
         <div class="form-group">
           <Field type="text" placeholder="Your Middle Name" rules="required|alpha" v-model="form.middleName" name="middle_name"/>
           <span class="validation-errors" v-if="errors.middle_name">{{ errors.middle_name }}</span>
@@ -21,24 +21,24 @@
         <hr>
 
         <div class="form-group">
-          <label>Email Address</label>
-          <Field type="text" placeholder="johndoe" rules="required|alpha" v-model="form.email_prefix" name="email_prefix"/>@
+          <label>Email Address <span class="text-blue-700">*</span></label>
+          <Field type="text" placeholder="johndoe" rules="required" v-model="form.email_prefix" name="email_prefix"/>@
           <span class="validation-errors" v-if="errors.email_prefix">{{ errors.email_prefix }}</span>
 
           <Field as="select" placeholder="johndoe" rules="required" v-model="form.email_domain" name="email_domain">
             <option value="" selected>select one</option>
+            <option value="hotmail">hotmail</option>
             <option value="gmail">gmail</option>
             <option value="yahoo">yahoo</option>
-            <option value="hotmail">hotmail</option>
           </Field>
           .
           <span class="validation-errors" v-if="errors.email_domain">{{ errors.email_domain }}</span>
 
           <Field type="text" placeholder="com / net / org / etc." rules="required|alpha|max:3" v-model="form.email_extension" name="email_extension"/>
-          <span class="validation-errors" v-if="errors.email_extension">{{ errors.email_extension }}</span>
+          <span class="validation-errors" v-if="errors.email_extension">Email extension is invalid. Three letters only.</span>
         </div>
         <div class="form-group">
-          <label>Phone Number:</label>
+          <label>Phone Number: <span class="text-yellow-500">*</span></label>
           <div class="flex">
             <div v-for="(repeat, key) in 11" :key="key">
               <Field as="select" class="mr-1" :name="`phone_number_${key}`" rules="required|numeric">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-group">
-          <label>Verify Phone Number:</label>
+          <label>Verify Phone Number: <span class="text-green-500">*</span></label>
           <div class="flex">
             <div v-for="(repeat, key) in 11" :key="key">
               <Field as="select" class="mr-1" :name="`phone_number_verification_${key}`" :rules="`required|numeric|confirmed:@phone_number_${key}`">
@@ -104,7 +104,7 @@
         <hr>
 
         <div class="form-group">
-          <Field type="text" placeholder="Your Full Address" rules="required|min:15" v-model="form.full_address" name="full_address" class="w-[150px]"/>
+          <Field type="text" placeholder="Your Complete Address" rules="required|min:15" v-model="form.full_address" name="full_address" class="w-[200px]"/>
           <span class="validation-errors" v-if="errors.full_address">your address is invalid <br> or NOT LONG ENOUGH</span>
         </div>
         <div class="form-group">
