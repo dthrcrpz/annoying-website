@@ -3,7 +3,7 @@
   <ModalBackground v-if="modal"/>
   <Cookies v-if="cookies"/>
 
-  <div class="fixed top-1 left-1 text-red-600 z-50" v-if="startedGame">
+  <div class="fixed top-1 left-1 text-red-500 z-50 bg-black px-1" v-if="startedGame">
     Seconds elapsed: <span class="font-bold text-lg">{{ timerCount }}</span>
   </div>
 
@@ -12,8 +12,8 @@
       <h1 class="text-4xl text-teal-600">- Why?</h1>
       <p class="text-xl mt-3">- By going through a <span class="text-red-600 font-bold">painful</span> website experience, you guys will appreciate <br> websites/applications with good design and UX (User Experience)</p>
       <p class="text-xl mt-3">- Learn why you SHOULD NOT take good <span class="text-teal-600">developers/programmers</span> and <span class="text-teal-600">designers</span> for granted</p>
-      <p class="text-xl mt-3">- To make you realize how <b class="text-red-600">SHITTY</b> most our government's <b>OnLinE sErviceS</b> are because they corrupt the budget! <br> That includes my very corrupt uncle.</p>
-      <p class="text-xl mt-3">- YOU GUYS DESERVE A GOOD UI/UX..... <span class="text-red-600 font-bold">OR NOT(?)</span></p>
+      <p class="text-xl mt-3">- To make you realize how <b class="text-red-600">SHITTY</b> most our government's <b>OnLinE sErviceS</b> are because they corrupt the budget! <br> My very corrupt uncle is one of them.</p>
+      <p class="text-xl mt-3">- YOU GUYS DESERVE THE BEST..... <span class="text-red-600 font-bold">OR NOT(?)</span></p>
     </div>
 
     <div class="mt-5 mb-10">
@@ -30,7 +30,7 @@
 
   <Game v-if="startedGame" @finish="finishGame()"/>
   <IdleCheck v-if="idleCheck"/>
-  <Help v-if="startedGame"/>
+  <Help v-if="showHelp"/>
 </template>
 
 <script>
@@ -61,7 +61,8 @@ export default {
     idleCheckTimer: null,
     finished: false,
     date: new Date(null),
-    idleCheck: false
+    idleCheck: false,
+    showHelp: false
   }),
   computed: {
     ...mapState({
@@ -101,6 +102,7 @@ export default {
 
       if (state == false) {
         this.startIdleChecking()
+        this.showHelp = true
       }
     },
     startGame () {
@@ -125,7 +127,7 @@ export default {
     startIdleChecking () {
       this.idleCheckTimer = setInterval(() => {
         this.toggleIdleCheck(true)
-      }, 50000)
+      }, 30000)
     },
   },
   mounted () {

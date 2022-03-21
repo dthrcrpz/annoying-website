@@ -1,61 +1,110 @@
 <template>
   <div id="registration-form" class="mb-16">
     <div class="wrapper ml-2">
-      <h1 class="text-4xl">Create Account:</h1>
+      <h1 class="text-4xl">Register,, so you will be able to Create <span class="text-red-500">A</span> <span class="text-red-500">A</span>ccount:</h1>
       <hr>
-      <Form @submit="onSubmit" v-slot="{ errors }">
+      <Form @submit="onSubmit" v-slot="{ errors }" @invalid-submit="onInvalidSubmit">
+        <b>Your Name (no special characters like !@#$%^&*()_+{}":>?|~ etc.")</b>
         <div class="form-group">
-          <Field type="text" placeholder="Your Middle Name" rules="required" v-model="form.middleName" name="middle_name"/>
+          <Field type="text" placeholder="Your Middle Name" rules="required|alpha" v-model="form.middleName" name="middle_name"/>
           <span class="validation-errors" v-if="errors.middle_name">{{ errors.middle_name }}</span>
         </div>
         <div class="form-group pl-2">
-          <Field type="text" placeholder="Your Last Name" rules="required" v-model="form.lastName" name="last_name"/>
+          <Field type="text" placeholder="Your Last Name" rules="required|alpha" v-model="form.lastName" name="last_name"/>
           <span class="validation-errors" v-if="errors.last_name">{{ errors.last_name }}</span>
         </div>
         <div class="form-group">
-          <Field type="text" placeholder="Your First Name" rules="required" v-model="form.firstName" name="first_name"/>
+          <Field type="text" placeholder="Your First Name" rules="required|alpha" v-model="form.firstName" name="first_name"/>
           <span class="validation-errors" v-if="errors.first_name">{{ errors.first_name }}</span>
         </div>
 
         <hr>
 
         <div class="form-group">
-          <label>Email Address</label>
+          <label>Email Address <span class="text-blue-700">*</span></label>
           <Field type="text" placeholder="johndoe" rules="required" v-model="form.email_prefix" name="email_prefix"/>@
           <span class="validation-errors" v-if="errors.email_prefix">{{ errors.email_prefix }}</span>
 
           <Field as="select" placeholder="johndoe" rules="required" v-model="form.email_domain" name="email_domain">
             <option value="" selected>select one</option>
+            <option value="hotmail">hotmail</option>
             <option value="gmail">gmail</option>
             <option value="yahoo">yahoo</option>
-            <option value="hotmail">hotmail</option>
           </Field>
           .
           <span class="validation-errors" v-if="errors.email_domain">{{ errors.email_domain }}</span>
 
-          <Field type="text" placeholder="com / net / org / etc." rules="required|alpha" v-model="form.email_extension" name="email_extension"/>
-          <span class="validation-errors" v-if="errors.email_extension">{{ errors.email_extension }}</span>
+          <Field type="text" placeholder="com / net / org / etc." rules="required|alpha|max:3" v-model="form.email_extension" name="email_extension"/>
+          <span class="validation-errors" v-if="errors.email_extension">Email extension is invalid. Three letters only.</span>
         </div>
         <div class="form-group">
-          <label>Phone Number (numbers only):</label>
-          <select v-for="(repeat, key) in 11" :key="key" class="mr-1">
-            <option>1</option>
-            <option>2</option>
-            <option>8</option>
-            <option>4</option>
-            <option>5</option>
-            <option>9</option>
-            <option>3</option>
-            <option>0</option>
-            <option>7</option>
-            <option>6</option>
-          </select>
+          <label>Phone Number: <span class="text-yellow-500">*</span></label>
+          <div class="flex">
+            <div v-for="(repeat, key) in 11" :key="key">
+              <Field as="select" class="mr-1" :name="`phone_number_${key}`" rules="required|numeric">
+                <option value="" selected>-</option>
+                <option value="one">one</option>
+                <option value="two">two</option>
+                <option value="tri">tri</option>
+                <option value="for">for</option>
+                <option value="fyv">fyv</option>
+                <option value="six">six</option>
+                <option value="svn">svn</option>
+                <option value="ate">ate</option>
+                <option value="nyn">nyn</option>
+                <option value="ten">ten</option>
+                <option value="2">2</option>
+                <option value="8">8</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="1">1</option>
+                <option value="9">9</option>
+                <option value="3">3</option>
+                <option value="0">0</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+              </Field>
+              <span class="validation-errors" v-if="errors[`phone_number_${key}`]">Invalid phone number. Must be numbers.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Verify Phone Number: <span class="text-green-500">*</span></label>
+          <div class="flex">
+            <div v-for="(repeat, key) in 11" :key="key">
+              <Field as="select" class="mr-1" :name="`phone_number_verification_${key}`" :rules="`required|numeric|confirmed:@phone_number_${key}`">
+                <option value="" selected>-</option>
+                <option value="one">one</option>
+                <option value="two">two</option>
+                <option value="tri">tri</option>
+                <option value="for">for</option>
+                <option value="fyv">fyv</option>
+                <option value="six">six</option>
+                <option value="svn">svn</option>
+                <option value="ate">ate</option>
+                <option value="nyn">nyn</option>
+                <option value="ten">ten</option>
+                <option value="2">2</option>
+                <option value="8">8</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="1">1</option>
+                <option value="9">9</option>
+                <option value="3">3</option>
+                <option value="0">0</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+              </Field>
+              <span class="validation-errors" v-if="errors[`phone_number_verification_${key}`]">Phone number must match. Please verify</span>
+            </div>
+          </div>
         </div>
 
         <hr>
 
         <div class="form-group">
-          <Field type="text" placeholder="Your Full Address" rules="required|min:15" v-model="form.full_address" name="full_address" class="w-[150px]"/>
+          <Field type="text" placeholder="Your Complete Address" rules="required|min:15" v-model="form.full_address" name="full_address" class="w-[200px]"/>
           <span class="validation-errors" v-if="errors.full_address">your address is invalid <br> or NOT LONG ENOUGH</span>
         </div>
         <div class="form-group">
@@ -112,10 +161,10 @@ export default {
     showAcceptWarning: false,
     showTermsModal: false,
     form: {
-      middleName: 'Type your middle name',
-      lastName: 'Type your last name',
-      firstName: 'Type your first name',
-      email_prefix: '',
+      middleName: '* Type your middle name *',
+      lastName: '* Type your last name *',
+      firstName: '* Type your first name *',
+      email_prefix: 'super_thief',
       email_domain: '',
       email_extension: '',
       full_address: '',
@@ -156,6 +205,11 @@ export default {
         this.$emit('submitData')
       })
     },
+    onInvalidSubmit (values) {
+      document.querySelector('.validation-errors').scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
   }
 }
 </script>

@@ -5,10 +5,20 @@ import store from './store'
 
 const app = createApp(App)
 
-import { defineRule } from 'vee-validate'
-import AllRules from '@vee-validate/rules'
-Object.keys(AllRules).forEach(rule => {
-  defineRule(rule, AllRules[rule])
+/* define vee-validate global rules */
+import { defineRule, configure } from 'vee-validate'
+import { required, min, max, alpha, numeric, confirmed } from '@vee-validate/rules'
+defineRule('required', required)
+defineRule('min', min)
+defineRule('max', max)
+defineRule('alpha', alpha)
+defineRule('confirmed', confirmed)
+defineRule('numeric', numeric)
+configure({
+  validateOnBlur: true,
+  validateOnChange: true,
+  validateOnInput: true,
+  validateOnModelUpdate: true,
 })
 
 app.use(store)

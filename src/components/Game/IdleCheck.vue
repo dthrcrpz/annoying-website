@@ -4,7 +4,7 @@
     <label>Type "Yes" (exactly) if you are still there</label>
     <input type="text" placeholder='Type "Yes" if you are still there' class="w-full py-2 px-4 text-black" v-model="answer" ref="textbox">
     <div class="block" v-if="answer == 'Yes'">
-      <button class="btn primary" @click="answer = 'No, I am not here. Sorry!     '">Accept reset</button>
+      <button class="btn primary" @click="answer = 'No, I am not NOT OUT here. Sorry!!!!!!!!!!!!'">Accept reset</button>
       <button class="btn danger" @click="closeMe()">Reject insubmission</button>
     </div>
   </div>
@@ -13,7 +13,7 @@
 <script>
 export default {
   data: () => ({
-    answer: 'No, I am not here. Sorry!     '
+    answer: 'No, I am not NOT OUT here. Sorry!!!!!!!!!!!!'
   }),
   inject: ['toggleIdleCheck'],
   methods: {
@@ -22,7 +22,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$refs.textbox)
     this.$refs.textbox.focus()
   }
 }
