@@ -3,7 +3,7 @@
     <div class="wrapper ml-2">
       <h1 class="text-4xl">Create Account:</h1>
       <hr>
-      <Form @submit="onSubmit" v-slot="{ errors }">
+      <Form @submit="onSubmit" v-slot="{ errors }" @invalid-submit="onInvalidSubmit">
         <div class="form-group">
           <Field type="text" placeholder="Your Middle Name" rules="required" v-model="form.middleName" name="middle_name"/>
           <span class="validation-errors" v-if="errors.middle_name">{{ errors.middle_name }}</span>
@@ -156,6 +156,11 @@ export default {
         this.$emit('submitData')
       })
     },
+    onInvalidSubmit (values) {
+      document.querySelector('.validation-errors').scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
   }
 }
 </script>

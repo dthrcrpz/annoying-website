@@ -22,7 +22,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$refs.textbox)
     this.$refs.textbox.focus()
   }
 }

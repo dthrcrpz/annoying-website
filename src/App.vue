@@ -30,7 +30,7 @@
 
   <Game v-if="startedGame" @finish="finishGame()"/>
   <IdleCheck v-if="idleCheck"/>
-  <Help v-if="startedGame"/>
+  <Help v-if="showHelp"/>
 </template>
 
 <script>
@@ -54,14 +54,15 @@ export default {
   data: () => ({
     gameReady: false,
     gameReadyTimer: 10,
-    startedGame: false,
+    startedGame: true,
     cookies: false,
     timerCount: 0,
     timer: null,
     idleCheckTimer: null,
     finished: false,
     date: new Date(null),
-    idleCheck: false
+    idleCheck: false,
+    showHelp: false
   }),
   computed: {
     ...mapState({
@@ -101,6 +102,7 @@ export default {
 
       if (state == false) {
         this.startIdleChecking()
+        this.showHelp = true
       }
     },
     startGame () {
@@ -109,7 +111,7 @@ export default {
       }
 
       this.startedGame = true
-      this.toggleCookies(true)
+      // this.toggleCookies(true)
 
       this.startTimer()
     },

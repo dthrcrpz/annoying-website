@@ -36,8 +36,9 @@ export default {
 <style lang="sass">
   .helper
     bottom: 0
-    transition: 20s
+    transition: 1s
     transform: translateY(0)
     &.at-bottom
       transform: translateY(84%)
+      transition: 30s
 </style>
