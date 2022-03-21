@@ -38,18 +38,23 @@
         </div>
         <div class="form-group">
           <label>Phone Number (numbers only):</label>
-          <select v-for="(repeat, key) in 11" :key="key" class="mr-1">
-            <option>1</option>
-            <option>2</option>
-            <option>8</option>
-            <option>4</option>
-            <option>5</option>
-            <option>9</option>
-            <option>3</option>
-            <option>0</option>
-            <option>7</option>
-            <option>6</option>
-          </select>
+          <div class="flex">
+            <div v-for="(repeat, key) in 11" :key="key">
+              <Field as="select" class="mr-1" :name="`phone_number_index_${key}`" rules="required">
+                <option value="" selected>-</option>
+                <option value="2">2</option>
+                <option value="8">8</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="9">9</option>
+                <option value="3">3</option>
+                <option value="0">0</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+              </Field>
+              <span class="validation-errors" v-if="errors[`phone_number_index_${key}`]">Invalid phone number</span>
+            </div>
+          </div>
         </div>
 
         <hr>
