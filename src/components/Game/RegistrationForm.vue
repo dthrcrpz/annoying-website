@@ -9,17 +9,6 @@
           <Field type="text" placeholder="Your Middle Name" rules="required|alpha" v-model="form.middleName" name="middle_name"/>
           <span class="validation-errors" v-if="errors.middle_name">{{ errors.middle_name }}</span>
         </div>
-        <div class="form-group pl-2">
-          <Field type="text" placeholder="Your Last Name" rules="required|alpha" v-model="form.lastName" name="last_name"/>
-          <span class="validation-errors" v-if="errors.last_name">{{ errors.last_name }}</span>
-        </div>
-        <div class="form-group">
-          <Field type="text" placeholder="Your First Name" rules="required|alpha" v-model="form.firstName" name="first_name"/>
-          <span class="validation-errors" v-if="errors.first_name">{{ errors.first_name }}</span>
-        </div>
-
-        <hr>
-
         <div class="form-group">
           <label>Email Address <span class="text-blue-700">*</span></label>
           <Field type="text" placeholder="johndoe" rules="required" v-model="form.email_prefix" name="email_prefix"/>@
@@ -37,6 +26,17 @@
           <Field type="text" placeholder="com / net / org / etc." rules="required|alpha|max:3" v-model="form.email_extension" name="email_extension"/>
           <span class="validation-errors" v-if="errors.email_extension">Email extension is invalid. Three letters only.</span>
         </div>
+        <div class="form-group">
+          <Field type="text" placeholder="Your First Name" rules="required|alpha" v-model="form.firstName" name="first_name"/>
+          <span class="validation-errors" v-if="errors.first_name">{{ errors.first_name }}</span>
+        </div>
+
+        <hr>
+        <div class="form-group pl-2">
+          <Field type="text" placeholder="Your Last Name" rules="required|alpha" v-model="form.lastName" name="last_name"/>
+          <span class="validation-errors" v-if="errors.last_name">{{ errors.last_name }}</span>
+        </div>
+        
         <div class="form-group">
           <label>Phone Number: <span class="text-yellow-500">*</span></label>
           <div class="flex flex-row flex-wrap">
