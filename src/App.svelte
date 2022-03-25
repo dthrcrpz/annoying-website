@@ -78,6 +78,7 @@
     }
   }
   function toggleCookies(state = true) {
+    state = false // remove this later
     cookies = state
     modal.toggleModal(state)
     if (state == false) {
