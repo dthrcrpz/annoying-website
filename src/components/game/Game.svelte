@@ -3,17 +3,20 @@
   {#if step == 2}
     <SetPassword v-if="step == 2" on:pay={() => changeStep(3)}/>
   {/if}
-  <!-- <Pay v-if="step == 3" @pay="finish()"/> -->
+  {#if step == 3}
+    <Pay on:pay={() => finish}/>
+  {/if}
 
 </div>
 
 <script>
   import SetPassword from './SetPassword.svelte'
+  import Pay from './Pay.svelte'
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()
 
   /* data */
-  let step = 2
+  let step = 3
 
   /* methods */
   function changeStep(step) {

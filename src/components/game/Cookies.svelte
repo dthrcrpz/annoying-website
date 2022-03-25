@@ -3,6 +3,7 @@
   <p class="text-2xl text-right">BUT THERE'S THIS BOX ANYWAY!!!</p>
   <p class="text-xl text-left">Is This 0kaY</p>
   <p class="text-3xl text-left">for you?</p>
+  <!-- svelte-ignore a11y-distracting-elements -->
   <marquee class="mt-5" scrollamount="5" behavior="alternate">
     <button class="btn primary translate-y-2" on:click={() => choose('no')}>No</button>
     <button class="btn danger translate-y-[-10px] text-sm" on:click={() => choose('yes')}>yes</button>
