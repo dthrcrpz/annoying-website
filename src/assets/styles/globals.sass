@@ -1,0 +1,28 @@
+.wrapper
+  @apply container mx-auto px-5
+
+.modal
+  @apply fixed shadow-md text-white px-5 py-5 mx-auto my-auto top-[15%] left-0 right-0 max-w-lg w-full
+
+.btn
+  @apply px-3 py-1 transition-all
+  &.primary
+    @apply bg-blue-500 hover:bg-blue-700 text-white
+  &.danger
+    @apply bg-red-500 hover:bg-red-700 text-white
+  &.warning
+    @apply bg-yellow-500 hover:bg-yellow-700
+
+.form-group
+  @apply mb-5 relative
+  label
+    @apply block font-bold
+  input, textarea, select
+    @apply border border-black px-2 py-2
+  select
+    @apply py-1
+  .validation-errors
+    @apply text-red-500 block absolute z-10 bg-red-500 text-white px-3 shadow-lg rounded-md transition-all left-2 text-sm top-[90%]
+
+hr
+  @apply border-[0.10px] h-0 border-gray-700 my-3
