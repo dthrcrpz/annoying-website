@@ -91,7 +91,7 @@
 
       <div class="form-group">
         <!-- svelte-ignore a11y-label-has-associated-control -->
-        <label>Verify Phone Number: <span class="text-yellow-500">*</span></label>
+        <label>Verify Phone Number: <span class="text-green-500">*</span></label>
         <div class="flex flex-row flex-wrap">
           {#each {length: 11} as n,key}
             <div>
@@ -141,7 +141,7 @@
         {/if}
       </div>
       <div class="form-group">
-        <textrea rows="10" placeholder="Your Street Name" class="w-full" name="street_name"></textrea>
+        <textarea rows="10" placeholder="Your Street Name" class="w-full" name="street_name"></textarea>
         {#if $errors.street_name}
           <span class="validation-errors">{ $errors.street_name }</span>
         {/if}
@@ -166,12 +166,14 @@
 
       <div class="flex justify-between">
         <button class="btn primary" type="button">Cancel</button>
-        <button class="btn danger" type="submit">Submit</button>
+        <button class="btn danger" type="submit" on:click={handleSubmitButton}>Submit</button>
       </div>
     </form>
   </div>
   
-  <!-- <AcceptPromptModal v-if="showAcceptWarning" @close="toggleAcceptWarning(false)"/> -->
+  {#if showAcceptWarning}
+    <AcceptPromptModal on:close={() => toggleAcceptWarning(false)}/>
+  {/if}
   <!-- <TermsModal @doAction="catchTermsAction" v-if="showTermsModal"/> -->
 </div>
 
@@ -181,20 +183,19 @@
   import { createForm } from 'felte'
   import { validator } from '@felte/validator-yup'
   import { schema, registrationFormValues } from '../../schemas/validation/registrationForm'
+  import AcceptPromptModal from './AcceptPromptModal.svelte'
   
   /* data */
   const dispatch = createEventDispatcher()
-  const { form, errors } = createForm({
+  const { form, errors, isValid } = createForm({
     initialValues: registrationFormValues,
-    extend: [validator({ schema })],
+    extend: validator({ schema }),
     onSubmit(values, context) {
+      console.log('pota');
       console.log(values)
       console.log(context)
     },
     onSuccess(res, context) {
-      console.log('success etoi')
-      console.log(res)
-      return
       if (!acceptedTerms) {
         toggleAcceptWarning(true)
         return
@@ -214,9 +215,6 @@
       console.log('errors to')
       console.log(err)
       return
-      document.querySelector('.validation-errors').scrollIntoView({
-        behavior: 'smooth'
-      })
     }
   })
 
@@ -239,6 +237,18 @@
     modal.toggleModal(value)
     if (value == false) {
       showTerms = true
+    }
+  }
+  function handleSubmitButton() {
+    console.log($isValid);
+    if (!$isValid) {
+      setTimeout(() => {
+        if (document.querySelectorAll('[aria-invalid="true"]').length > 0) {
+          document.querySelector('[aria-invalid="true"]').scrollIntoView({
+            behavior: 'smooth'
+          })
+        }
+      }, 200)
     }
   }
 </script>

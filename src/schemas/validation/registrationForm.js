@@ -47,5 +47,5 @@ export const schema = yup.object({
   phone_number_verification_7: yup.string().matches(/^[0-9]+$/gi, 'Must be a number').required('Phone number is invalid').oneOf([yup.ref('phone_number_7'), null], 'Phone number does not match'),
   phone_number_verification_8: yup.string().matches(/^[0-9]+$/gi, 'Must be a number').required('Phone number is invalid').oneOf([yup.ref('phone_number_8'), null], 'Phone number does not match'),
   phone_number_verification_9: yup.string().matches(/^[0-9]+$/gi, 'Must be a number').required('Phone number is invalid').oneOf([yup.ref('phone_number_9'), null], 'Phone number does not match'),
-  phone_number_1verification_0: yup.string().matches(/^[0-9]+$/gi, 'Must be a number').required('Phone number is invalid').oneOf([yup.ref('phone_number__0'), null], 'Phone number does not match'),
+  phone_number_verification_10: yup.string().matches(/^[0-9]+$/gi, 'Must be a number').required('Phone number is invalid').oneOf([yup.ref('phone_number_10'), null], 'Phone number does not match'),
 })
