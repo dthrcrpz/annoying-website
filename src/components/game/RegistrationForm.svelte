@@ -155,14 +155,16 @@
 
       <hr>
 
-      <div class="mb-5" v-if="showTerms">
-        <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer relative" on:click={() => toggleTermsModal}>
-          {#if acceptedTerms}
-            <span class="absolute top-[-10px] font-bold left-0 text-2xl text-green-500">✓</span>
-          {/if}
+      {#if showTerms}
+        <div class="mb-5">
+          <div class="checkbox px-2 py-2 border border-black w-2 h-2 cursor-pointer relative" on:click={() => toggleTermsModal(true)}>
+            {#if acceptedTerms}
+              <span class="absolute top-[-10px] font-bold left-0 text-2xl text-green-500">✓</span>
+            {/if}
+          </div>
+          <p>I have <a href={'javascript:void(0)'} class="text-yellow-400 underline">read and</a> accepted the te<u on:click={() => toggleTermsModal(true)}>rms and condi</u>tions </p>
         </div>
-        <p>I have <a href={'javascript:void(0)'} class="text-yellow-400 underline">read and</a> accepted the te<u on:click={() => toggleTermsModal}>rms and condi</u>tions </p>
-      </div>
+      {/if}
 
       <div class="flex justify-between">
         <button class="btn primary" type="button">Cancel</button>
@@ -174,7 +176,9 @@
   {#if showAcceptWarning}
     <AcceptPromptModal on:close={() => toggleAcceptWarning(false)}/>
   {/if}
-  <!-- <TermsModal @doAction="catchTermsAction" v-if="showTermsModal"/> -->
+  {#if showTermsModal}
+    <TermsModal on:doAction={(e) => catchTermsAction(e)}/>
+  {/if}
 </div>
 
 <script>
@@ -184,6 +188,8 @@
   import { validator } from '@felte/validator-yup'
   import { schema, registrationFormValues } from '../../schemas/validation/registrationForm'
   import AcceptPromptModal from './AcceptPromptModal.svelte'
+  import TermsModal from './TermsModal.svelte'
+  import User from '../../../src/services/User'
   
   /* data */
   const dispatch = createEventDispatcher()
@@ -191,30 +197,18 @@
     initialValues: registrationFormValues,
     extend: validator({ schema }),
     onSubmit(values, context) {
-      console.log('pota');
-      console.log(values)
-      console.log(context)
-    },
-    onSuccess(res, context) {
       if (!acceptedTerms) {
         toggleAcceptWarning(true)
         return
       }
 
-      dispatch('submitData')
-
-      // User.add(form).then(res => {
-      //   //
-      // }).catch(err => {
-      //   //
-      // }).then(() => {
-      //   $emit('submitData')
-      // })
-    },
-    onError(err, context) {
-      console.log('errors to')
-      console.log(err)
-      return
+      User.add(values).then(res => {
+        //
+      }).catch(err => {
+        //
+      }).then(() => {
+        dispatch('submitData')
+      })
     }
   })
 
@@ -224,8 +218,8 @@
   let showTermsModal = false
 
   /* methods */
-  function catchTermsAction(action) {
-    acceptedTerms = (action == 'accept') ? true : false
+  function catchTermsAction(e) {
+    acceptedTerms = (e.detail == 'accept') ? true : false
     toggleTermsModal(false)
   }
   function toggleTermsModal(value = true) {
@@ -240,7 +234,6 @@
     }
   }
   function handleSubmitButton() {
-    console.log($isValid);
     if (!$isValid) {
       setTimeout(() => {
         if (document.querySelectorAll('[aria-invalid="true"]').length > 0) {

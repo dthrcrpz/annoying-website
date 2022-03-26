@@ -41,9 +41,7 @@
 {#if startedGame}
 <Game on:finish={() => finished = true}/>
 {/if}
-
 <!-- <IdleCheck v-if="idleCheck"/> -->
-<!-- <Help v-if="showHelp"/> -->
 
 <script>
   import Navbar from "./components/globals/Navbar.svelte"
@@ -55,15 +53,14 @@
 
   /* data */
   let gameReady = false
-  let gameReadyTimer = 1
-  let startedGame = true // wew: set this to false later
+  let gameReadyTimer = (process.env.MODE == 'development') ? 1 : 10
+  let startedGame = false
   let cookies = false
   let timerCount = 0
   let timer = null
   let idleCheckTimer = null
   let finished = false
   let idleCheck = false
-  let showHelp = false
 
   /* methods */
   function toggleIdleCheck(state = true) {
@@ -75,12 +72,11 @@
     }
   }
   function toggleCookies(state = true) {
-    state = false // remove this later
+    state = (process.env.MODE == 'development') ? false : state
     cookies = state
     modal.toggleModal(state)
     if (state == false) {
       startIdleChecking()
-      showHelp = true
     }
   }
   function startGame() {

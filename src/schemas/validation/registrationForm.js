@@ -1,9 +1,46 @@
 import * as yup from 'yup'
 
-export const registrationFormValues = {
-  middle_name: '* Type your middle name *',
-  last_name: '* Type your last name *',
-  first_name: '* Type your first name *',
+export const registrationFormValues = (process.env.MODE == 'development') ? {
+  middle_name: 'aasdasd',
+  last_name: 'aasdasd',
+  first_name: 'aasdasd',
+  email_prefix: 'super_thief',
+  email_domain: 'gmail',
+  email_extension: 'com',
+  full_address: 'aasdasdsaaasdasdsaaasdasdsaaasdasdsaaasdasdsaaasdasdsaaasdasdsa',
+  city_name: 'aasdasdsa',
+  street_name: 'aasdasdsa',
+  state: 'aasdasdsa',
+
+  phone_number_0: "2",
+  phone_number_1: "2",
+  phone_number_2: "2",
+  phone_number_3: "2",
+  phone_number_4: "2",
+  phone_number_5: "2",
+  phone_number_6: "2",
+  phone_number_7: "2",
+  phone_number_8: "2",
+  phone_number_9: "2",
+  phone_number_10: "2",
+
+  phone_number_verification_0: "2",
+  phone_number_verification_1: "2",
+  phone_number_verification_2: "2",
+  phone_number_verification_3: "2",
+  phone_number_verification_4: "2",
+  phone_number_verification_5: "2",
+  phone_number_verification_6: "2",
+  phone_number_verification_7: "2",
+  phone_number_verification_8: "2",
+  phone_number_verification_9: "2",
+  phone_number_verification_10: "2",
+
+  created_at: new Date().toISOString()
+} : {
+  middle_name: '* Your middle name *',
+  last_name: '* Your last name *',
+  first_name: '* Your first name *',
   email_prefix: 'super_thief',
   email_domain: '',
   email_extension: '',
@@ -11,6 +48,8 @@ export const registrationFormValues = {
   city_name: '',
   street_name: '',
   state: '',
+
+  created_at: new Date().toISOString()
 }
 
 export const schema = yup.object({
