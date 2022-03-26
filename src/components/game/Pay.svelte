@@ -49,7 +49,7 @@
     <p class="text-lg">I know. I need it be very annoying. Your assistance is highly appreciated. </p>
     <p class="text-lg">
       - <b>For developers:</b> Feel free to create Pull Requests at <a href="https://github.com/dthrcrpz/annoying-site" target="_blank" class="text-teal-700 underline">https://github.com/dthrcrpz/annoying-site</a>. <br>
-      - <b>For designers and everyone:</b> Idk, maybe send me a message at <a href="https://dthrcrpz.dev" target="_blank" class="text-teal-700 underline">https://dthrcrpz.dev</a>.
+      - <b>For designers and everyone:</b> Idk, maybe send me a message. You'll find me. <br>
       There's a "Contact" section there. Not sure if that function still works tho. (hehe. I'm lowkey advertising my portfolio)
     </p>
   </div>
