@@ -39,7 +39,7 @@
 {/if}
 
 {#if startedGame}
-<Game on:finish={() => finished = true}/>
+<Game on:finish={finishGame}/>
 {/if}
 
 {#if idleCheck}
@@ -67,6 +67,9 @@
   let idleCheck = false
 
   /* methods */
+  function finishGame() {
+    finished = true
+  }
   function toggleIdleCheck(state = true) {
     idleCheck = state
     modal.toggleModal(state)
@@ -92,7 +95,7 @@
   }
   function startTimer() {
     timer = setInterval(() => {
-      if (!finished) {
+      if (finished == false) {
         timerCount += 1
       } else {
         clearInterval(timer)
@@ -107,12 +110,12 @@
 
   /* lifecycle */
   onMount(() => {
-    let timer = setInterval(() => {
+    let readyTimer = setInterval(() => {
       if (gameReadyTimer > 0) {
         gameReadyTimer -= 1
       } else {
         gameReady = true
-        clearInterval(timer)
+        clearInterval(readyTimer)
       }
     }, 1000)
   })
