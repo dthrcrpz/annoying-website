@@ -4,7 +4,7 @@
   {:else if  step == 2}
     <SetPassword on:pay={() => changeStep(3)}/>
   {:else if step == 3}
-    <Pay on:pay={() => finish}/>
+    <Pay on:pay={() => dispatch('finish')}/>
   {/if}
 
   {#if showHelp}
@@ -27,8 +27,5 @@
   /* methods */
   function changeStep(newStep) {
     step = newStep
-  }
-  function finish() {
-    dispatch('finish')
   }
 </script>

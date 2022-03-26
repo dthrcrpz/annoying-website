@@ -39,7 +39,7 @@
 {/if}
 
 {#if startedGame}
-<Game on:finish={finishGame}/>
+  <Game on:finish={finishGame}/>
 {/if}
 
 {#if idleCheck}
