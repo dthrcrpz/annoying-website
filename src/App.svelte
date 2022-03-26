@@ -41,13 +41,17 @@
 {#if startedGame}
 <Game on:finish={() => finished = true}/>
 {/if}
-<!-- <IdleCheck v-if="idleCheck"/> -->
+
+{#if idleCheck}
+  <IdleCheck toggleIdleCheck={toggleIdleCheck}/>
+{/if}
 
 <script>
   import Navbar from "./components/globals/Navbar.svelte"
   import Cookies from "./components/game/Cookies.svelte"
   import ModalBackground from "./components/globals/ModalBackground.svelte"
   import Game from "./components/game/Game.svelte"
+  import IdleCheck from "./components/game/IdleCheck.svelte"
   import { modal } from "./stores/global"
   import { onMount } from "svelte"
 
