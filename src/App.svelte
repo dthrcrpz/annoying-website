@@ -76,7 +76,6 @@
     }
   }
   function toggleCookies(state = true) {
-    state = (process.env.MODE == 'development') ? false : state
     cookies = state
     modal.toggleModal(state)
     if (state == false) {
