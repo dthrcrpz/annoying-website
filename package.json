@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@felte/validator-yup": "^1.0.3",
+    "axios": "^0.26.1",
     "felte": "^1.1.4",
-    "firebase": "^8.10.1",
     "yup": "^0.32.11"
   }
 }

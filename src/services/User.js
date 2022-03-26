@@ -1,9 +1,10 @@
-import firebase from "../firebase"
-const db = firebase.collection('/users')
+import { api } from "../api"
 
 class User {
-  add (user) {
-    return db.add(user)
+  add (data) {
+    return api.post('want-shib', {
+      data: data
+    })
   }
 }
 
