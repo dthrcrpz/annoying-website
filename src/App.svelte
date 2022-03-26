@@ -39,7 +39,7 @@
 {/if}
 
 {#if startedGame}
-<Game on:finish={finishGame}/>
+<Game on:finish={() => finished = true}/>
 {/if}
 
 <!-- <IdleCheck v-if="idleCheck"/> -->
@@ -56,7 +56,7 @@
   /* data */
   let gameReady = false
   let gameReadyTimer = 1
-  let startedGame = false
+  let startedGame = true // wew: set this to false later
   let cookies = false
   let timerCount = 0
   let timer = null
@@ -66,9 +66,6 @@
   let showHelp = false
 
   /* methods */
-  function finishGame() {
-    finished = true
-  }
   function toggleIdleCheck(state = true) {
     idleCheck = state
     modal.toggleModal(state)
