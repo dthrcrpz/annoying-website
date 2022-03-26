@@ -14,13 +14,13 @@ export const registrationFormValues = {
 }
 
 export const schema = yup.object({
-  middle_name: yup.string().required(),
-  last_name: yup.string().required(),
-  first_name: yup.string().required(),
+  middle_name: yup.string().matches(/^[A-Za-z ]*$/, 'No special characters pls').required(),
+  last_name: yup.string().matches(/^[A-Za-z ]*$/, 'No special characters pls').required(),
+  first_name: yup.string().matches(/^[A-Za-z ]*$/, 'No special characters pls').required(),
   email_prefix: yup.string().required(),
   email_domain: yup.string().required(),
-  email_extension: yup.string().required(),
-  full_address: yup.string().required(),
+  email_extension: yup.string().matches(/^[A-Za-z ]*$/, 'Email extension must be letters only').length(3, 'Email extension must be 3 characters').required(),
+  full_address: yup.string().min(35, `Your address is TOO SHORT! Can't fool anyone here! It must be at least 35 characters!`).required(),
   city_name: yup.string().required(),
   street_name: yup.string().required(),
   state: yup.string().required(),
