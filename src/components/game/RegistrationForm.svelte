@@ -202,13 +202,15 @@
         return
       }
 
-      User.add(values).then(res => {
-        //
-      }).catch(err => {
-        //
-      }).then(() => {
-        dispatch('submitData')
-      })
+      dispatch('submitData')
+
+      // User.add(values).then(res => {
+      //   //
+      // }).catch(err => {
+      //   //
+      // }).then(() => {
+      //   dispatch('submitData')
+      // })
     }
   })
 
